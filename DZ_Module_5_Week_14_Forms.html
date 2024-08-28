@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forms</title>
+    <style>
+        *{
+            margin: 5px;
+        }
+        aside{
+            display: inline-block;
+            vertical-align: top;
+        }
+        .radio{
+        margin-top: 30px;
+        }
+        #save{
+            width: 500px;
+        }
+    </style>
+</head>
+<body>
+    <form id="userForm">
+   <aside>
+    <div class="name">
+    <label for="firstName">Firstname:</label><br/>
+        <input style="width: 215px;" type="text" id="firstName" name="firstName">
+    </div>
+    <div>
+    <label for="birthDay">Birthday</label><br/>
+        <input style="width: 215px;" type="date" id="birthDay" name="birthDay">
+    </div>
+    <div>
+    <label for="country">Country:</label><br/>
+        <select style="width: 220px; height: 25px;" name="country" id="country">
+            <option value=" "></option>
+            <option value="Russia">Russia</option>
+            <option value="USA">USA</option>
+            <option value="Japan">Japan</option>
+            <option value="Korea">Korea</option>
+        </select>
+    </div>
+   </aside>
+   <aside>
+    <div class="name">
+   <label for="lastName">Lastname:</label><br/>
+        <input style="width: 215px;" type="text" id="lastName" name="lastName">
+    </div>
+    <div class="radio">
+    <label for="gender">Gender:</label>
+        <input type="radio" id="man" name="gender" value="Male" checked><span>Male</span>
+        <input type="radio" id="woman" name="gender" value="Female"><span>Female</span>       
+    </div>
+    <div>
+    <label for="city">City:</label><br/>
+        <select style="width: 220px; height: 25px;" name="city" id="city">
+        <option value=" "></option>
+        <option value="Moscow">Moscow</option>
+        <option value="Novosibirsk">Novosibirsk</option>
+        <option value="Vladivostok">Vladivostok</option>
+        <option value="New York">New York</option>
+        <option value="Washington">Washington</option>
+        <option value="Chicago">Chicago</option>
+        <option value="Osaka">Osaka</option>
+        <option value="Sapporo">Sapporo</option>
+        <option value="Nagano">Nagano</option>
+        <option value="Pyongyang">Pyongyang</option>
+        <option value="Hamhung">Hamhung</option>
+        <option value="Wonsan">Wonsan</option>
+        </select>
+    </div>
+   </aside>
+   <div>
+    <span>Skills:</span>
+    <input type="checkbox" id="html" name="skills" value="HTML"><label for="html">HTML</label>
+    <input type="checkbox" id="css" name="skills" value="CSS"><label for="css">CSS</label>
+    <input type="checkbox" id="js" name="skills" value="JS"><label for="js">JS</label>
+    <input type="checkbox" id="php" name="skills" value="PHP"><label for="php">PHP</label>
+    <input type="checkbox" id="c++" name="skills" value="C++"><label for="c++">C++</label>
+    <input type="checkbox" id="java" name="skills" value="JAVA"><label for="java">JAVA</label>
+    <input type="checkbox" id="c#" name="skills" value="C#"><label for="c#">C#</label>
+   </div>
+   <button id="save" type="button" onclick="displayUserInfo()">Save</button>
+   <div id="userInfo">
+    <h2>User Information</h2>
+    <p>This section will display the entered information.</p>
+  </div>
+    </form>
+
+   <script>
+    
+    function displayUserInfo() {
+      const firstName = document.getElementById('firstName').value;
+      const lastName = document.getElementById('lastName').value;
+      const birthDay = document.getElementById('birthDay').value;
+      const country = document.getElementById('country').value;
+      const city = document.getElementById('city').value;
+      const gender = document.querySelector('input[name="gender"]:checked').value;
+      const skills = [];
+
+      const skillCheckboxes = document.querySelectorAll('input[name="skills"]:checked');
+      skillCheckboxes.forEach(checkbox => skills.push(checkbox.value));
+   
+      const userInfoDiv = document.getElementById('userInfo');
+      userInfoDiv.innerHTML = `
+        <h2>Result:</h2>
+        <p><strong>Firstname:</strong> ${firstName}</p>
+        <p><strong>Lastname:</strong> ${lastName}</p>
+        <p><strong>Birthday:</strong> ${birthDay}</p>
+        <p><strong>Country:</strong> ${country}</p>
+        <p><strong>City:</strong> ${city}</p>
+        <p><strong>Gender:</strong> ${gender}</p>
+        <p><strong>Skills:</strong> ${skills.join(" , ")}</p>
+        
+      `;
+      
+    }
+    
+    
+   </script>
+   
+</body>
+</html>

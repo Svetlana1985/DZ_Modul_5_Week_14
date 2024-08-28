@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questions</title>
+    <style>
+        input[type="text"]{
+            position: relative;
+            width: 500px;
+            margin-top: 20px;
+        }
+        h2{
+          border-top: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <header>All questions:</header>
+    <div id="container"></div>
+    <form action="" method="post">
+ 
+    <main>
+    <h2>Add new question:</h2>
+    <span>Question: </span>
+    <input type="text" id="question" name="question" style="margin-left: 62px;"><br/>
+
+    <span>Correct Answer: </span>
+    <input type="text" id="corrAnswer" name="corrAnswer" style="margin-left: 20px;"><br/>
+
+    <span>Wrong Answer: </span>
+    <input type="text" id="wrongAnswer" name="wrongAnswer" style="margin-left: 25px;"><br/>
+
+    <input type="submit" value="Add" style="width: 640px; margin-top: 5px;">
+    </main>
+    </form>
+    <script>
+         let form = document.forms[0];
+         form.addEventListener("submit", saveMessage);
+
+        function saveMessage(event){
+        event.preventDefault();
+        let anyGuestion = document.getElementById("question").value;
+        let corrAnswer = document.getElementById("corrAnswer").value;
+        let wrongAnswer = document.getElementById("wrongAnswer").value;
+
+        let str1 = document.createElement("main");
+        str1.innerHTML = anyGuestion;
+        let str2 = document.createElement("main");
+        str2.innerHTML = corrAnswer;
+        let str3 = document.createElement("main");
+        str3.innerHTML = wrongAnswer;
+
+        document.getElementById("container").appendChild(str1);
+        document.getElementById("container").appendChild(str2);
+        document.getElementById("container").appendChild(str3);
+        form.reset();}
+    </script>
+</body>
+</html>

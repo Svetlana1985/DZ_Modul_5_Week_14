@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+<title>Color Palette</title>
+<style>
+    /* .neumorphism-3 {
+        width: 50px;
+        height: 50px;
+        margin: 20px;
+        background-color: RGB(0, 0, 0);
+        
+    } */
+    .neumorphism-3 {
+        width: 50px;
+        height: 50px;
+        margin: 20px;
+        background-color: RGB(0, 0, 0);
+        position: relative;
+    }
+    input[type="number"]{
+        width: 50px;
+    }
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button{
+        appearance: none;
+    }
+    button{
+        margin-top: 10px;
+        width: 218px;
+    }
+    span{
+        margin-left: 40px;
+        width: 200px;
+    }
+    .rgb-value {
+        position: absolute;
+        top: 20px; /* Позиционируем текст под блоком */
+        left: 20px;
+        font-size: 14px;
+        color: black}
+   
+</style>
+</head>
+<body>
+    <label for="red">R</label><input type="number" id="red" min="0" max="255">
+    <label for="green">G</label><input type="number" id="green" min="0" max="255">
+    <label for="blue">B</label><input type="number" id="blue" min="0" max="255"><br/>
+    <button id="addColor">Add Color</button>
+    <div id="colorContainer"><span></span></div>
+
+    <script>
+        let red = document.getElementById('red');
+        let green = document.getElementById('green');
+        let blue = document.getElementById('blue');
+        let addColorBtn = document.getElementById('addColor');
+        let colorContainer = document.getElementById('colorContainer');
+
+        addColorBtn.addEventListener("click", function() {
+            let r = parseInt(red.value) || 0;
+            let g = parseInt(green.value) || 0;
+            let b = parseInt(blue.value) || 0;
+
+            if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255) {
+                alert("Please enter valid RGB values (0-255)");
+                return;
+            }
+
+            let colorBox = document.createElement('div');
+            colorBox.classList.add('neumorphism-3');
+            colorBox.style.backgroundColor = `RGB(${r}, ${g}, ${b})`;
+
+            let rgbValue = document.createElement('span');
+            rgbValue.classList.add('rgb-value');
+            rgbValue.textContent = `RGB (${r}, ${g}, ${b})`
+           
+            colorBox.appendChild(rgbValue);
+            colorContainer.appendChild(colorBox);
+
+            red.value = "";
+            green.value = "";
+            blue.value = "";
+        });
+    </script>
+</body>
+</html>
